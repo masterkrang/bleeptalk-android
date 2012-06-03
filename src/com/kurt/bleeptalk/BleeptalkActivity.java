@@ -1,24 +1,48 @@
 package com.kurt.bleeptalk;
 
-import com.google.android.maps.MapActivity;
-import com.google.android.maps.MapView;
+import com.kurt.bleeptalk.activities.MyMapActivity;
+import com.kurt.bleeptalk.activities.PlaceSearch;
 
 import android.app.Activity;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+//import android.location.Location;
+//import android.location.LocationListener;
+//import android.location.LocationManager;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
-public class BleeptalkActivity extends MapActivity {
+
+public class BleeptalkActivity extends Activity {
 	
 	TextView tv; 
 	
-	LocationManager locMgr;// = (LocationManager) getSystemService(LOCATION_SERVICE);
-	Location recentLoc;// = locMgr.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+	//LocationManager locMgr;// = (LocationManager) getSystemService(LOCATION_SERVICE);
+	//Location recentLoc;// = locMgr.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 	
-	LocationListener locationListener; // = new LocationListener() {
+	//LocationListener locationListener; // = new LocationListener() {
         
+	/** ActionsBar */
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		Log.i("BleeptalkActivity", "hello onCreateOptionsMenu");
+		MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        // If the device doesn't support camera, remove the camera menu item
+        if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
+//            /menu.removeItem(R.id.menu_camera);
+        }
+        return true;
+	}
+	
+	@Override 
+	public boolean onOptionsItemSelected(MenuItem item) {
+		return true;
+	}
 	
     /** Called when the activity is first created. */
     @Override
@@ -26,20 +50,23 @@ public class BleeptalkActivity extends MapActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        
         tv = new TextView(this);
         tv.setMovementMethod(new ScrollingMovementMethod());
         
+        //initLocation();
+        //listeners();
         
-        initLocation();
-        listeners();
+        //locMgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
         
-        locMgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+        //fire up map
+        //Intent intent = new Intent(this, MyMapActivity.class);
+        //startActivity(intent);
         
-        MapView mapView = (MapView) findViewById(R.id.mapview);
-        mapView.setBuiltInZoomControls(true);
+        //fire up search
+        Intent intent = new Intent(this, PlaceSearch.class);
+        startActivity(intent);
     }
-    
+    /*
     private void listeners() {
     	//set up listeners
     	// Define a listener that responds to location updates
@@ -87,10 +114,5 @@ public class BleeptalkActivity extends MapActivity {
         tv.setText("This is gay " + lat + " " + lng);
         setContentView(tv);
     }
-
-	@Override
-	protected boolean isRouteDisplayed() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	*/
 }

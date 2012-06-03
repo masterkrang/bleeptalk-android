@@ -3,5 +3,12 @@
 
     <string name="hello">Hello World, BleeptalkActivity!</string>
     <string name="app_name">Bleeptalk</string>
+    <string name="search_placeholder">search places</string>
+    
+    <!--  menu (perhaps these should be defined in xml file or all strings here? 
+    	seems like it couples stuff to this file too much by keeping it in here -->
+    <string name="menu_home">home</string>
+    <string name="menu_search">fuck you</string>
+    
 
 </resources>
