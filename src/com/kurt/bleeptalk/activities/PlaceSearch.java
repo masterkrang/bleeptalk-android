@@ -46,7 +46,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-import libs.android-utils.com.kurt.utils.FoursquareVO;
+import android-utils.com.kurt.utils.FoursquareVO;
 
 public class PlaceSearch extends ListActivity {
 
